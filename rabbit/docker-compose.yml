@@ -21,6 +21,8 @@ services:
     image: mongo
     ports:
       - 27017:27017
+    networks:
+      - netw
       
   orthanc:
     image: osimis/orthanc
@@ -29,6 +31,8 @@ services:
       - 8042:8042
     environment:
       - AC_AUTHENTICATION_ENABLED=false
+    networks:
+      - netw
 
 
 networks:
