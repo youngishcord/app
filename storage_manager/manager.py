@@ -18,7 +18,13 @@ app = Celery(
 @app.task
 def manager(data=None):
     print('manager called')
-    print('recv ', data)
+    print(f'recv {data}')
+
+    if data == 'ping':
+        for _ in range(5):
+            print('THIS IS PING')
+        return data
+    
     if isinstance(data, dict) and len(data) != 0:
         try:
             if data['valid'] == True:

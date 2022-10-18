@@ -20,7 +20,13 @@ def get_ext(name):
 @app.task
 def inspector(data=None):
     print('inspector called')
-    print('recv ', data)
+    print(f'recv {data}')
+
+    if data == 'ping':
+        for _ in range(5):
+            print('THIS IS PING')
+        return data
+    
     if isinstance(data, dict):
         try:
             if data['filename']:

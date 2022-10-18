@@ -12,6 +12,12 @@ app = Celery('bar', backend='rpc://', broker=broker_addr)
 @app.task
 def bar(data):
     print('bar called')
-    print(data)
+    print(f'recv {data}')
+
+    if data == 'ping':
+        for _ in range(5):
+            print('THIS IS PING')
+        return data
+    
     data['body'] += '-bar-'
     return data

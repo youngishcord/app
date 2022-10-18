@@ -4,6 +4,7 @@ tasks = {
     'bar': "tasks.bar",
     'inspector':'inspector.inspector',
     'manager':'manager.manager',
+    'orthanc_upload':'orthanc_upload.orthanc_upload'
 }
 
 queues = {
@@ -19,4 +20,5 @@ ROUTES = {
     "tasks.bar":{"queue":"bar"},
     'inspector.inspector':{'queue':'inspectors'},
     'manager.manager':{'queue':'managers'},
+    'orthanc_upload.orthanc_upload':{'queue':'orthanc_upload'}
 }
