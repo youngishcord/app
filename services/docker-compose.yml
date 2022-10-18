@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  rabbit:
+    hostname: rabbit
+    container_name: rabbit
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    ports:
+      - 15672:15672
+      - 5672:5672
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - netw
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    networks:
+      - netw
+      
+  orthanc:
+    image: osimis/orthanc
+    container_name: orthanc
+    ports:
+      - 4242:4242
+      - 8042:8042
+    environment:
+      - AC_AUTHENTICATION_ENABLED=false
+    networks:
+      - netw
+
+
+networks:
+  netw:
+    driver: bridge
