@@ -37,6 +37,12 @@ services:
     networks:
       - netw
 
+  server:
+    container_name: server
+    build: C:/Users/kulik/Desktop/api_gateway
+    ports:
+      - 50051:50051
+
 
 networks:
   netw:

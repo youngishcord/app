@@ -1,7 +1,7 @@
 import os
 from celery import Celery
 from celery import Task as BaseTask
-from .config import ROUTES
+from .q import ROUTES
 
 
 def create_celery():
@@ -12,8 +12,8 @@ def create_celery():
     )
 
     celery = Celery(
-        'unit_test',
-        backend='rpc://',
+        'test',
+        backend='redis://localhost:6379',
         broker=broker_addr
     )
 
@@ -27,3 +27,5 @@ def create_celery():
             self.name = name
 
     return Task
+
+# https://dpaste.org/rvOJO

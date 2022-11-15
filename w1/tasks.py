@@ -1,13 +1,14 @@
 from celery import Celery
 import os
 import json
+import time
 
 broker_addr = os.environ.get(
     'BROKER',
     'pyamqp://guest@localhost:5672//',
 )
 
-app = Celery('foo', backend='rpc://', broker=broker_addr)
+app = Celery('foo', backend='redis://localhost:6379', broker=broker_addr)
 
 @app.task
 def foo(data):
@@ -20,4 +21,8 @@ def foo(data):
         return data
     
     data['body'] += '-foo-'
+    time.sleep(1)
     return data
+
+
+# https://dpaste.org/ggaNq

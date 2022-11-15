@@ -1,0 +1,16 @@
+ROUTES = {
+    "tasks.one":{"queue":"ones"}, 
+    "tasks.add":{"queue":"ones"},
+    "tasks.two":{"queue":"twos"},
+    "tasks.three":{"queue":"threes"},
+    "tasks.foo":{"queue":"foo"},
+    "tasks.bar":{"queue":"bar"},
+    'inspector.inspector':{'queue':'inspectors'},
+    'manager.manager':{'queue':'managers'},
+    'orthanc_upload.orthanc_upload':{'queue':'orthanc_upload'},
+    'filestore.filestore':{'queue':'filestore'},
+    'mongo_metadata.mongo_metadata':{'queue':'mongo_metadata'},
+    'exceptions1.exceptions1':{'queue':'exceptions1Q'},
+    'exceptions2.exceptions2':{'queue':'exceptions2Q'},
+    'collection_manager.collection_manager':{'queue':'collection_manager'},
+}

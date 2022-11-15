@@ -1,5 +1,3 @@
-from itertools import chain
-import queue
 from settings.create import create_celery
 from settings.config import tasks
 import unittest
@@ -8,7 +6,6 @@ Task = create_celery()
 
 t_foo = Task(tasks['foo'])
 t_bar = Task(tasks['bar'])
-
 
 foo = t_foo.s().set(queue='foo')
 bar = t_bar.s().set(queue='bar')
@@ -20,8 +17,14 @@ data = {
 
 # t_foo.delay(data).get()
 
-ch = foo|foo|foo|bar|bar|foo|bar
-# print(ch.delay(data).get())
+#ch = foo|foo|foo|bar|bar|foo|bar
+ch = foo|bar|foo
+res = ch.delay(data)
+print(res.collect(intermediate=True))
+for result, value in res.collect(intermediate=True):
+    print(value)
+
+# res -> {'tasks': 'TestsFooBar', 'body': '-foo--bar--foo-'}
 
 class TestSum(unittest.TestCase):
 
@@ -30,5 +33,8 @@ class TestSum(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    pass
 
+
+# https://dpaste.org/RpDor

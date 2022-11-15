@@ -1,0 +1,4 @@
+docker build worker1 -t worker1
+
+docker run --network host --name w1 -it w1
+docker run --network host -v storage:/data --name mongo_metadata -it mongo_metadata
